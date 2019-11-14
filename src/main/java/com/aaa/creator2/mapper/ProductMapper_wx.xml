@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.creator2.mapper.ProductMapper_wx">
+    <select id="selProduct" resultType="Product">
+        select * from product where sid=#{sid} and pstate=0 order by sales desc
+    </select>
+    <select id="selPro" resultType="Product">
+        select * from product where pstate=0 order by sales desc
+    </select>
+</mapper>

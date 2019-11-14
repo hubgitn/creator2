@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.creator2.mapper.OrderMapper">
+    <resultMap type="Order" id="findUserItemsMap">
+        <!--&lt;!&ndash; 一个用户 &ndash;&gt;-->
+        <!--&lt;!&ndash;<id column="uid" property="uid"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<result column="openid" property="openid"/>&ndash;&gt;-->
+        <!-- 多个订单 -->
+        <!--<collection property="orderList" ofType="Order">-->
+            <id column="oid" property="oid"/>
+            <result column="onumeration" property="onumeration"/>
+            <result column="uid" property="uid"/>
+            <result column="otime" property="otime"/>
+            <result column="osum" property="osum"/>
+            <!-- 多个明细 -->
+            <collection property="ordersItemList" ofType="OrdersItem">
+                <id column="omid" property="omid"/>
+                <result column="pid" property="pid"/>
+                <result column="ordernum" property="ordernum"/>
+                <result column="onumeration" property="onumeration"/>
+                <!--一个订单明细包含一个商品-->
+                <association property="product" javaType="Product">
+                    <result column="pid" property="pid"/>
+                    <result column="pimage" property="pimage"/>
+                    <result column="pname" property="pname"/>
+                    <result column="details" property="details"/>
+                    <result column="sid" property="sid"/>
+                    <result column="price" property="price"/>
+                    <result column="onum" property="onum"/>
+                    <result column="sales" property="sales"/>
+                    <result column="psid" property="psid"/>
+                </association>
+            </collection>
+        <!--</collection>-->
+    </resultMap>
+    <!--<select id="getOrderById" resultMap="findUserItemsMap" parameterType="int">-->
+        <!--select o.oid,o.onumeration,o.ostateid,o.otime,o.osum,oi.omid,oi.onumeration,oi.pid,oi.ordernum,p.pname,p.pimage,p.price from orders o,user u,orderitem oi,product p where u.uid=o.uid and o.onumeration=oi.onumeration and oi.pid=p.pid and u.uid=#{uid}-->
+    <!--</select>-->
+    <select id="getOrderById" parameterType="int" resultMap="findUserItemsMap">
+        select o.oid,o.onumeration,o.otime,o.osum,oi.omid,oi.onumeration,oi.pid,oi.ordernum,p.pname,p.pimage,p.price from orders o,user u,orderitem oi,product p where u.uid=o.uid and o.onumeration=oi.onumeration and oi.pid=p.pid and u.uid=#{uid}
+    </select>
+</mapper>

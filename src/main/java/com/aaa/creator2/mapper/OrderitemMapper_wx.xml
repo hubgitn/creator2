@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.creator2.mapper.OrderitemMapper_wx">
+    <insert id="addOrderitem" parameterType="Orderitem">
+        insert into orderitem(onumeration,pid,ordernum) values(#{onumeration},#{pid},#{ordernum})
+   /* now()  onumeration,  now(3),*/
+    </insert>
+
+
+
+    <insert id="addOrders" parameterType="Orders">
+        insert into orders(onumeration,uid,otime,osum) values(#{onumeration},#{uid},now(3),#{osum})
+    </insert>
+<!-- ,ostateid  ,1-->
+
+
+   <!-- <insert id="addOrderitem" parameterType="Orderitem">
+        insert into orderitem(onumeration,pid,ordernum) values
+        <foreach collection="pid" index="index" separator="," item="item">
+            (now(),#{item},#{ordernum})
+        </foreach>
+    </insert>-->
+
+</mapper>

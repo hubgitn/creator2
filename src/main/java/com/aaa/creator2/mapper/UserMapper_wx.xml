@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.creator2.mapper.UserMapper_wx">
+    <!--<select id="selUser" resultType="User">-->
+        <!--select * from user where uphone=#{uphone} and upassword=#{upassword}-->
+    <!--</select>-->
+    <insert id="addUser" parameterType="Users">
+      insert into user(openid,uname) values (#{openid},#{uname})
+    </insert>
+
+    <select id="selUser" resultType="int" parameterType="String">
+    select count(openid) from user where openid =#{openid}
+    </select>
+
+<!--查uid-->
+    <select id="selUserId" resultType="Users" parameterType="String">
+        select uid from user where openid=#{openid}
+    </select>
+</mapper>

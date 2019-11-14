@@ -1,0 +1,8 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.creator2.mapper.AddCommentsMapper">
+    <insert id="addComments" parameterType="Comments">
+          insert into comments (ccontent,uid,oid) VALUES (#{ccontent},#{uid},#{oid})
+    </insert>
+</mapper>
